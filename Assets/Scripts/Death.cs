@@ -38,7 +38,10 @@ public class Death : MonoBehaviour {
         }
         if (isDying && Time.time > flaggedForDeathAt + deathProcessLength)
         {
-            Destroy(gameObject);
+            Destroy(gameObject.transform.Find("Pillar").gameObject);
+            Destroy(gameObject.transform.Find("TopLayer").gameObject);
+            gameObject.transform.Find("DeathBarrier").gameObject.SetActive(true);
+            this.enabled = false;
         }
     }
 }

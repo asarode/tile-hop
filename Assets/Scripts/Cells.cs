@@ -36,8 +36,8 @@ public class Cells : MonoBehaviour {
             for (var z = -9.5; z <= 9.5; z++)
             {
                 var cellObj = Instantiate(cell);
-                cellObj.transform.position = new Vector3((float)x, 3f, (float)z);
-                cellObj.transform.localScale = new Vector3(1f, 5f, 1f);
+                cellObj.transform.position = new Vector3((float)x, 0f, (float)z);
+                // cellObj.transform.localScale = new Vector3(1f, 5f, 1f);
                 row.Add(z, cellObj);
                 coordsAlive.Add(new GridCoord(x, z));
             }
