@@ -17,7 +17,6 @@ public class Death : MonoBehaviour {
     {
         flaggedForDeathAt = Time.time;
         isDying = true;
-        Debug.Log("Flagged for death!");
     }
 
     void Start()
