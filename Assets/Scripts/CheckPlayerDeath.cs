@@ -10,12 +10,11 @@ public class CheckPlayerDeath : MonoBehaviour {
     [SerializeField]
     private float deadlyExposureTime = 2f;
     private float exposureStartedAt = 0f;
-	// Use this for initialization
+
 	void Start () {
         headset = VRTK_DeviceFinder.HeadsetTransform();
     }
 	
-	// Update is called once per frame
 	void Update () {
         downRay = new Ray(headset.position, Vector3.down);
         if (Physics.Raycast(downRay, out hit))

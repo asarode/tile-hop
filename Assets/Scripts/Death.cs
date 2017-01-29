@@ -41,6 +41,7 @@ public class Death : MonoBehaviour {
             Destroy(gameObject.transform.Find("Pillar").gameObject);
             Destroy(gameObject.transform.Find("TopLayer").gameObject);
             gameObject.transform.Find("DeathBarrier").gameObject.SetActive(true);
+            GameObject.FindGameObjectWithTag("Score").GetComponent<Score>().IncrementScore();
             this.enabled = false;
         }
     }
