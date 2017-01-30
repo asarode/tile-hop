@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
+using UnityEngine.SceneManagement;
 public class CheckPlayerDeath : MonoBehaviour {
 
     private Transform headset;
     private Ray downRay;
     private RaycastHit hit;
     [SerializeField]
+    private float deathFadeTime = 2f;
     private float deadlyExposureTime = 2f;
     private float exposureStartedAt = 0f;
+    private VRTK_HeadsetFade headsetFade;
 
-	void Start () {
+    void Start()
+    {
         headset = VRTK_DeviceFinder.HeadsetTransform();
     }
-	
-	void Update () {
+
+    void Update () {
         downRay = new Ray(headset.position, Vector3.down);
         if (Physics.Raycast(downRay, out hit))
         {
@@ -27,7 +31,10 @@ public class CheckPlayerDeath : MonoBehaviour {
                 }
                 else if (Time.time > exposureStartedAt + deadlyExposureTime)
                 {
-                    Debug.Log("LTBHTF");
+                    headsetFade = GetComponent<VRTK_HeadsetFade>();
+                    headsetFade.Fade(new Color(0.69f, 0.06f, 0.06f), deathFadeTime);
+                    Invoke("RestartLevel", deathFadeTime);
+                    
                 }
                 Debug.Log("Hit the danger zone!");
             }
@@ -37,4 +44,9 @@ public class CheckPlayerDeath : MonoBehaviour {
             }
         }
 	}
+
+    void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
